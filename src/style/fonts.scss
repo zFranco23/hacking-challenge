@@ -1,0 +1,25 @@
+$light: 300;
+$normal: 400;
+$subbold: 500;
+$semibold: 600;
+$bold: 700;
+
+$title-font: 'Roboto', sans-serif;
+$body-font: 'Roboto', sans-serif;
+
+@mixin h1 {
+  font-weight: $semibold;
+  font-size: 32px;
+  line-height: 40px;
+  font-family: $title-font;
+  margin: 0;
+}
+
+@mixin h2 {
+  font-weight: $semibold;
+  font-size: 24px;
+  line-height: 32px;
+  font-family: $title-font;
+  margin: 0;
+}
+
