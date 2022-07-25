@@ -1,0 +1,85 @@
+
+@import '../../../style/colors.scss';
+@import '../../../style/fonts.scss';
+
+div.login__main {
+    font-family:  $body-font;
+
+    p {
+        margin: 0;
+    }
+
+    div.login__title {
+        position: relative;
+        padding: 11rem 2.4rem 8rem 2.4rem;
+        background-color: #F7F8FC;
+
+        h1.login__title-text {
+            margin: 1rem 0;
+            font-family: $title-font;
+            font-weight: 400;
+            font-size: 2.8rem;
+            color : $gray-title;
+    
+            span {
+                color: $red-500;
+            }
+        }
+    
+        p.login__title-text2 {
+            font-family: $title-font;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            color : $gray-title;
+        }
+        p.login__title-text3 {
+            @include paragraph;
+            color : $gray-paragraph;
+            line-height: 24px;
+        }
+    
+        img.login__title-girl {
+            position: absolute;
+            top: 6rem;
+            right: 0;
+        }
+    }
+
+
+    div.form__container {
+        
+        padding: 32px;
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            h2.form__title {
+                @include h2;
+                font-weight: 400;
+                color : $gray-title;
+            }
+
+            div.button__container {
+                margin: 2rem 0;
+                width: 100%;
+            }
+        }
+
+        p.text-politics {
+            font-size: 1.35rem;
+            font-weight: 300;
+            line-height: 20px;
+            letter-spacing: 0.2px;
+            font-family: $body-font;
+            color : $gray-paragraph;  
+
+            a {
+                font-weight: 400;
+                text-decoration: underline;
+            }
+        }
+    }
+
+}

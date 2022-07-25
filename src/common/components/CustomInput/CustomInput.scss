@@ -1,0 +1,20 @@
+
+@import '../../../style/fonts.scss';
+
+
+input.input {
+    font-family: $title-font;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #FFFFFF;
+    padding: 1.6rem;
+    font-size: 1.6rem;
+    color : #A3ABCC;
+    border: 1px solid #C5CBE0;
+    border-radius: 4px;
+
+    &::placeholder {
+        color : #A3ABCC;
+    }
+}
