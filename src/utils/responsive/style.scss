@@ -1,0 +1,16 @@
+
+
+
+div.from-mobile {
+    display: none;
+    @media (min-width : 768px){
+        display: block;
+    }
+}
+
+div.mobile {
+    display: block;
+    @media (min-width : 768px){
+        display: none;
+    }
+}

@@ -1,0 +1,32 @@
+
+@import '../../../style/colors.scss';
+@import '../../../style/fonts.scss';
+
+navbar.navbar {
+    position: absolute;
+    top:0;
+    width: 100%;
+    background-color: transparent;
+    padding : 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (min-width : 768px){
+        padding : 16px 64px;
+    }
+
+    div.navbar__contact {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        
+        p {
+            font-size: 1.4rem;
+            color : $blue-500;
+        }
+        p.navbar__contact-text {
+            color : $gray-paragraph
+        }
+    }
+}
