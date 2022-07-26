@@ -1,0 +1,21 @@
+
+
+
+div.item {
+    height: 100%;
+    width: 100%;
+}
+
+div.desktop {
+    display: none;
+    @media (min-width : 768px){
+        display: block;
+    }
+}
+
+div.mobile {
+    display: block;
+    @media (min-width : 768px){
+        display: none;
+    }
+}

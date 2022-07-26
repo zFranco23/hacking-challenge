@@ -1,0 +1,39 @@
+
+@import '../../../style/fonts.scss';
+@import '../../../style/colors.scss';
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+input.input {
+    font-family: $title-font;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #FFFFFF;
+    padding: 1.6rem;
+    font-size: 1.6rem;
+    color : #A3ABCC;
+    border: 1px solid #C5CBE0;
+    border-radius: 4px;
+    transition: 0.3s ease-in-out;
+
+    &::placeholder {
+        color : #A3ABCC;
+    }
+
+    // &:focus {
+    //     border-color : $gray-title;
+    // }
+}
