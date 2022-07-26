@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import CustomButton from "../../../common/components/CustomButton/CustomButton";
 import CustomCheckbox from "../../../common/components/CustomCheckbox/CustomCheckbox";
@@ -9,8 +10,7 @@ import carGirlDesktop from "../../../assets/img/login/girl-desktop.png";
 import { Mobile, FromMobile } from "../../../utils/responsive";
 
 import "./Login.scss";
-import { useForm } from "react-hook-form";
-import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
+// import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
 
 const docOptions = [
   { value: "DNI", name: "DNI" },
