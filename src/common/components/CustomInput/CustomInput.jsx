@@ -1,17 +1,22 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import "./CustomInput.scss";
 
-const CustomInput = (props) => {
-  const { className, ...otherProps } = props;
-  return (
-    <input
-      type="text"
-      className={`input ${className ? className : ""}`}
-      {...otherProps}
-    />
-  );
-};
+const CustomInput = forwardRef(
+  ({ className, onChange, onBlur, name, label, ...otherProps }, ref) => {
+    return (
+      <input
+        type="text"
+        name={name}
+        ref={ref}
+        onChange={onChange}
+        onBlur={onBlur}
+        className={`input ${className ? className : ""}`}
+        {...otherProps}
+      />
+    );
+  }
+);
 
 CustomInput.propTypes = {
   className: PropTypes.string,

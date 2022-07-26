@@ -1,20 +1,28 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 
 import "./CustomCheckbox.scss";
 
-const CustomCheckbox = ({ label }) => {
-  return (
-    <label className="control control-checkbox">
-      {label}
-      <input type="checkbox" />
-      <div className="control_indicator"></div>
-    </label>
-  );
-};
+const CustomCheckbox = forwardRef(
+  ({ text, onChange, onBlur, name, label, ...otherProps }, ref) => {
+    return (
+      <label className="control control-checkbox">
+        {text}
+        <input
+          type="checkbox"
+          name={name}
+          ref={ref}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+        <div className="control_indicator"></div>
+      </label>
+    );
+  }
+);
 
 CustomCheckbox.propTypes = {
-  label: PropTypes.node,
+  text: PropTypes.node,
 };
 
 export default CustomCheckbox;

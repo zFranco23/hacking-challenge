@@ -7,11 +7,10 @@ import "./Navbar.scss";
 
 const Navbar = () => {
   return (
-    <navbar className="navbar">
+    <nav className="navbar">
       <a href="/">
         <img src={logo} alt="logo rimac" />
       </a>
-
       <div className="navbar__contact">
         <FromMobile>
           <p className="navbar__contact-text">¿Tienes alguna duda?</p>
@@ -23,7 +22,7 @@ const Navbar = () => {
           <p>(01) 411 6001</p>
         </FromMobile>
       </div>
-    </navbar>
+    </nav>
   );
 };
 

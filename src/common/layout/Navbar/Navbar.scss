@@ -2,7 +2,7 @@
 @import '../../../style/colors.scss';
 @import '../../../style/fonts.scss';
 
-navbar.navbar {
+nav.navbar {
     position: absolute;
     top:0;
     z-index: 9;
@@ -15,11 +15,11 @@ navbar.navbar {
 
     
     @media (min-width : 768px){
-        padding : 16px 64px;
+        padding : 1.6rem 11.2rem;
     }
 
     div.navbar__contact {
-        display: flex;
+        display: flex; 
         justify-content: center;
         gap: 16px;
         
