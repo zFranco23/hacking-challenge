@@ -1,0 +1,111 @@
+
+@import '../../../style/colors.scss';
+@import '../../../style/fonts.scss';
+
+div.thanks__main {
+    font-family:  $body-font;
+    overflow: hidden;
+    p {
+        margin: 0;
+    }
+
+    @media (min-width: 768px){
+        display : flex;
+        height: calc(100vh - 96px);
+    }
+
+    div.thanks__container-img {
+
+        @media (min-width: 768px){
+            position: relative;
+            width: 30%;
+            background-color: #F7F8FC;
+        }
+
+        img {
+            width: 100%;
+            max-width: 100%;
+
+            @media (min-width: 768px){
+                width: 90%;
+            }
+    
+        }
+
+        div.float-boy {
+            display: none;
+            width: fit-content;
+            height: fit-content;
+            position: absolute;
+            top: 0;
+            left: 25%;
+            transform: translate(0,20%);
+            bottom: 0;
+
+            @media (min-width: 768px){
+                display: block;
+            }
+        }
+
+    }
+
+
+    div.thanks__text-wrap {
+            
+        padding: 48px 32px;
+
+        @media (min-width: 768px){
+            width: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .thanks__wrap {
+
+            @media (min-width: 1200px){
+                margin-top: -6rem;
+            }
+            
+        }
+        h4 {
+            @include h4;
+            font-size: 2.5rem;
+            color : $red-500;
+
+            span {
+                color :$gray-title;
+            }
+
+            @media (min-width: 768px){
+                font-size: 3.6rem;
+            }
+        }
+
+        p.text-confirmation {
+            margin: 2.4rem 0;
+            font-size: 1.6rem;
+            color: $gray-paragraph;
+            font-family: $body-font;
+            line-height: 26px;
+            font-weight: 300;
+
+            span {
+                font-weight: 400;
+            }
+
+            @media (min-width: 768px){
+                line-height: 14px;
+            }
+        }
+
+        button.btn__use {
+            margin: 2rem 0;
+
+            @media (min-width: 768px){
+                width: 25.56rem;
+            }
+        }
+    }
+
+}

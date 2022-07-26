@@ -1,13 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useMemo } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../../assets/img/login/rimac-logo.png";
 import { FromMobile, Mobile } from "../../../utils/responsive";
 
 import "./Navbar.scss";
 
 const Navbar = () => {
+  const location = useLocation();
+
+  const isUsualNavbar = useMemo(() => {
+    return (
+      location && location.pathname && !location.pathname.startsWith("/login")
+    );
+  }, [location]);
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isUsualNavbar ? "navbar-fixed" : ""}`}>
       <a href="/">
         <img src={logo} alt="logo rimac" />
       </a>
