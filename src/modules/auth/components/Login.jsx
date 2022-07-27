@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 
 import CustomButton from "../../../common/components/CustomButton/CustomButton";
@@ -10,6 +11,7 @@ import carGirlDesktop from "../../../assets/img/login/girl-desktop.png";
 import { Mobile, FromMobile } from "../../../utils/responsive";
 
 import "./Login.scss";
+import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
 // import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
 
 const docOptions = [
@@ -17,7 +19,8 @@ const docOptions = [
   { value: "C.E", name: "C.E" },
 ];
 
-const Login = () => {
+const Login = (props) => {
+  const { isFetchingUser, fetchUserFn, updateUser } = props;
   const [openSelect, setOpenSelect] = useState(false);
   const [docType, setDocType] = useState("DNI");
 
@@ -28,8 +31,12 @@ const Login = () => {
   } = useForm();
 
   const submitForm = (values) => {
-    console.log(values);
+    updateUser({ info: values });
   };
+
+  useEffect(() => {
+    fetchUserFn();
+  }, []);
 
   const contentTitle = (
     <>
@@ -97,6 +104,7 @@ const Login = () => {
 
   return (
     <div className="login__main">
+      {isFetchingUser && <LoaderSpinner />}
       <div className="login__title">
         <Mobile>
           {contentTitle}
@@ -189,6 +197,12 @@ const Login = () => {
       </div>
     </div>
   );
+};
+
+Login.propTypes = {
+  isFetchingUser: PropTypes.bool,
+  fetchUserFn: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
 };
 
 export default Login;

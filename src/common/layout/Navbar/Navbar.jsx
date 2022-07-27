@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../../../assets/img/login/rimac-logo.png";
+import logo from "../../../assets/img/login/rimac-logo.svg";
 import { FromMobile, Mobile } from "../../../utils/responsive";
 
 import "./Navbar.scss";

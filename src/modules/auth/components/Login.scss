@@ -128,6 +128,7 @@ div.login__main {
         div.select__input-type {
             position: relative;
             display: flex;
+            align-items: center;
             border: 1px solid #C5CBE0;
             border-top-left-radius: 4px;
             border-bottom-left-radius: 4px;
@@ -176,7 +177,6 @@ div.login__main {
 
     p.error__text {
         margin-top: 0.4rem;
-        font-family: $title-font;
         color : #ED4337;
         font-weight: 600;
     }

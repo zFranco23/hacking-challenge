@@ -1,0 +1,89 @@
+@import  '../../../../../style/colors.scss'; 
+@import  '../../../../../style/fonts.scss' ;
+
+
+div.coverage__item {
+    padding: 2.4rem 0;
+    border-bottom: 1px solid #E4E8F7;
+
+    div.coverage__action {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .item {
+            width: fit-content;
+        }
+
+        div.coverage__container-name{
+            width: 100%;
+            padding:0 16px;
+            p.coverage__name {
+                color :$gray-title;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0.2px;
+            }
+        }
+        i {
+            color : $red-500;
+        }
+    }
+
+    div.coverage__content {
+        overflow: hidden;
+        padding: 0 0 0 64px;
+        margin: 0.8rem 1.6rem;
+        @include paragraph;
+        font-family: $body-font;
+        color : $gray-paragraph;
+        font-size: 14px;
+        line-height: 24px;
+        transition: all 0.3s ease-in-out;
+        opacity: 1;
+        margin-bottom: 2rem;
+        height: 100%;
+    }
+    div.hide {
+        margin-bottom: 0;
+        opacity: 0;
+        height: 0;
+        background-color: #FFFFFF;
+        div.coverage__expanded-content{
+            height: 0;
+        }
+    }
+
+    div.show__less {
+        color :  #6F7DFF;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0 0 2rem 64px;
+        width: 10rem;
+        p{
+            @include paragraph;
+            font-family: $title-font;
+            color : $gray-paragraph;
+            font-weight: 700;
+            font-size: 10px;
+            line-height: 16px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        i {
+            color :#A3ABCC;
+        }
+    }
+
+    div.show__less.expanded {
+        p, i {
+            color :  #A3ABCC;
+        }
+    }
+    div.show__less.hided {
+        p, i {
+            color :  #6F7DFF;
+        }
+    }
+}

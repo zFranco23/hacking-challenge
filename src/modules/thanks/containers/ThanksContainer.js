@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import Thanks from "../components/Thanks";
 
 export default connect(
-  (state) => ({}),
+  (state) => ({
+    user: state.auth.user,
+  }),
   (dispatch) => bindActionCreators({}, dispatch)
 )(Thanks);
