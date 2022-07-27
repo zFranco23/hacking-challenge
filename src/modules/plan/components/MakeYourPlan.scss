@@ -254,6 +254,14 @@ div.plan__main {
             outline: none;
         }
 
+        button:disabled {
+            cursor: default;
+
+            i{
+                color : #F0F2FA;
+            }
+        }
+
         div.currency-wrap {
             position: relative;
             width: 100%;

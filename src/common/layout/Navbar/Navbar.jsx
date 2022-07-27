@@ -28,7 +28,12 @@ const Navbar = () => {
           <p>Llámanos</p>
         </Mobile>
         <FromMobile>
-          <p>(01) 411 6001</p>
+          <a href="tel: (01) 411 6001" className="link">
+            <div className="navbar_phone-wrap">
+              <i className="material-icons">phone</i>
+              <p>(01) 411 6001</p>
+            </div>
+          </a>
         </FromMobile>
       </div>
     </nav>
