@@ -29,7 +29,7 @@ const CheckoutWrap = ({ coverages, amountToPay, isValid }) => {
         <ul>
           {coverages &&
             coverages.map((c) => (
-              <li key={`coverage-selected-${c.code}`}>{c.name}</li>
+              <li key={`coverage-selected-${c.code}`}>{c.benefit}</li>
             ))}
         </ul>
       </div>

@@ -51,8 +51,17 @@ div.plan__main {
     div.plan__info {
         padding: 4rem 3.2rem 5.6rem 4rem;
 
+
         @media (min-width: 768px){
-            width: 30%;
+            width: 100%;
+        }
+
+        @media (min-width: 992px){
+            width: 50%;
+        }
+
+        @media (min-width: 1200px){
+            width: 25%;
         }
 
         
@@ -131,8 +140,11 @@ div.plan__main {
     }
 
     div.plan__car-content {
-        padding: 4.4rem 3.2rem 0 3.2rem;
+        padding:4.4rem  3.2rem 0 3.2rem;
 
+        @media (min-width: 768px){
+            padding-top: 0;
+        }
         @media (min-width: 1200px){
             width: 70%;
             display: flex;
@@ -293,6 +305,76 @@ div.plan__main {
         }
         i {
             color : #6F7DFF;
+        }
+    }
+
+    div.back-button {
+        width: fit-content;
+        margin-bottom: 2.4rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        div.back-button-container {
+            width: 2.4rem;
+            height: 2.4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid $red-500;
+            border-radius: 100%;
+            i {
+                transform: scale(0.8);
+                color: $red-500;
+            }
+        }
+
+        p {
+            @include paragraph;
+            margin-left: 16px;
+            font-family: $title-font;
+            font-size: 1.2rem;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            color :#A3ABCC;
+        }
+    }
+
+    div.back-button-gray {
+        margin: 0;
+        div.back-button-container {
+            border: 1px solid #F0F2FA;
+            i {
+                transform: scale(0.8);
+                color: #F0F2FA;
+            }
+        }
+    }
+
+    div.progress__container {
+        padding: 1.2rem 3.2rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        border-bottom :1px solid #E4E8F7;
+
+        p {
+            @include paragraph;
+            color :$gray-paragraph;
+            font-family: $title-font;
+            font-weight: 700;
+            font-size: 1rem;
+            line-height: 16px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+        div.progress__bar {
+            height: 6px;
+            background: #6769FF;
+            border-radius: 20px;
+            width: 50%;
         }
     }
 }

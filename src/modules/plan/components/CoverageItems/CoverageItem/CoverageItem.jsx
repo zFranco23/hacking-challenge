@@ -10,16 +10,17 @@ const CoverageItem = ({
   setCoveragesSelected,
 }) => {
   const [expanded, setExpanded] = useState(false);
+
   const handleExpand = () => {
     setExpanded((prev) => !prev);
   };
 
-  const isChecked = useMemo(() => {
+  const isCoverageSelected = useMemo(() => {
     return (
       coveragesSelected &&
       !!coveragesSelected.find((el) => el.code === coverage.code)
     );
-  }, [coveragesSelected]);
+  }, [coveragesSelected, coverage]);
 
   const onCheckedChange = (e) => {
     const activate = e.target.checked;
@@ -33,32 +34,61 @@ const CoverageItem = ({
     });
   };
 
+  const handleSelectCoverage = () => {
+    if (isCoverageSelected) {
+      setCoveragesSelected((prev) =>
+        prev.filter((el) => el.code !== coverage.code)
+      );
+    } else {
+      setCoveragesSelected((prev) => [...prev, coverage]);
+    }
+  };
+
+  const handleButtonContent = (
+    <div className="button-handle" onClick={handleSelectCoverage}>
+      <div className="btn btn-handle">
+        <i className="material-icons">
+          {isCoverageSelected ? "remove" : "add"}
+        </i>
+      </div>
+      <p>{isCoverageSelected ? "QUITAR" : "AGREGAR"}</p>
+    </div>
+  );
   return (
     <div className="coverage__item">
-      <div className="coverage__action" onClick={handleExpand}>
-        <img src={coverage.icon} alt="coverage mini" />
-        <div className="coverage__container-name">
-          <p className="coverage__name">{coverage.name}</p>
-        </div>
-        <Mobile>
+      <Mobile>
+        <div className="coverage__action">
+          <img src={coverage.icon} alt="coverage mini" />
+          <div className="coverage__container-name">
+            <p className="coverage__name">{coverage.name}</p>
+          </div>
+
           <div style={{ display: "flex" }}>
             <CustomSwitch
               id={coverage.code}
-              isChecked={isChecked}
+              isChecked={isCoverageSelected}
               onCheckedChange={onCheckedChange}
             />
           </div>
-        </Mobile>
-        <FromMobile>
+        </div>
+      </Mobile>
+
+      <FromMobile>
+        <div className="coverage__action" onClick={handleExpand}>
+          <img src={coverage.icon} alt="coverage mini" />
+          <div className="coverage__container-name">
+            <p className="coverage__name">{coverage.name}</p>
+          </div>
           <i className="material-icons">
             {expanded ? "expand_less" : "expand_more"}
           </i>
-        </FromMobile>
+        </div>
+      </FromMobile>
+
+      <div className={`coverage__content ${!expanded ? "hide" : ""}`}>
+        {coverage.desc}
       </div>
       <Mobile>
-        <div className={`coverage__content ${!expanded ? "hide" : ""}`}>
-          {coverage.desc}
-        </div>
         <div
           className={`show__less ${expanded ? "expanded" : "hided"}`}
           onClick={handleExpand}
@@ -69,6 +99,8 @@ const CoverageItem = ({
           </i>
         </div>
       </Mobile>
+
+      <FromMobile>{handleButtonContent}</FromMobile>
     </div>
   );
 };

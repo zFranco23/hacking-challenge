@@ -10,7 +10,6 @@ import ThanksContainer from "../modules/thanks/containers/ThanksContainer";
 import { ScrollToTop } from "../utils/react";
 
 import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
 
 function AppRouter() {
   const { user } = useSelector((state) => state.auth);
@@ -25,9 +24,10 @@ function AppRouter() {
           path="/login"
           exact
           element={
-            <PublicRoute logged={!!user && user.placa}>
-              <LoginContainer />
-            </PublicRoute>
+            // <PublicRoute logged={!!user && user.placa}>
+            //   <LoginContainer />
+            // </PublicRoute>
+            <LoginContainer />
           }
         />
         <Route

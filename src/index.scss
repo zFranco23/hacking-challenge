@@ -2,6 +2,7 @@
 html {
   font-size: 62.5%; //normalize to 1rem = 10px
   box-sizing: border-box;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 *, *:before, *:after {

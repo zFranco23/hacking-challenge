@@ -116,6 +116,7 @@ div.login__main {
             color : $gray-paragraph;  
 
             a {
+                color : $gray-paragraph;  
                 font-weight: 400;
                 text-decoration: underline;
             }
@@ -176,6 +177,7 @@ div.login__main {
     }
 
     p.error__text {
+        font-family: $title-font;
         margin-top: 0.4rem;
         color : #ED4337;
         font-weight: 600;

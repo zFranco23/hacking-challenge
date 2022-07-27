@@ -16,6 +16,9 @@ import { commaFormat } from "../../../utils/number";
 import "./MakeYourPlan.scss";
 import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
 import CoverageItems from "./CoverageItems/CoverageItems";
+import CoverageSelect from "./CoverageSelect/CoverageSelect";
+import { usePrevious } from "../../../utils/state";
+import Stepper from "./Stepper/Stepper";
 
 const MakeYourPlan = (props) => {
   const { user, isFetchingCar, fetchCarFn, car } = props;
@@ -25,11 +28,17 @@ const MakeYourPlan = (props) => {
   const [coveragesSelected, setCoveragesSelected] = useState([]);
   const { register, watch, setValue } = useForm({
     defaultValues: {
-      amount: "0",
+      amount: "12500",
     },
   });
-
   const { amount } = watch();
+
+  const prevAmount = usePrevious(amount);
+
+  const amountWasMajor = useMemo(() => {
+    const n = Number(prevAmount);
+    return !isNaN(n) && n > 16000;
+  }, [prevAmount]);
 
   const amountToPay = useMemo(() => {
     let amountTemp = 20;
@@ -78,6 +87,14 @@ const MakeYourPlan = (props) => {
       <Mobile>
         <h1 className="plan__info-title">Mira las coberturas</h1>
       </Mobile>
+      <FromMobile>
+        <div className="back-button" onClick={() => navigate(-1)}>
+          <div className="back-button-container">
+            <i className="material-icons">keyboard_arrow_left</i>
+          </div>
+          <p>volver</p>
+        </div>
+      </FromMobile>
       <h1 className="plan__info-title desktop">
         ¡Hola, <span>{shortName}!</span>
       </h1>
@@ -100,6 +117,22 @@ const MakeYourPlan = (props) => {
     </>
   );
 
+  const selectCoverageContet = (
+    <section>
+      <div className="coverages">
+        <div className="coverages__title-wrap">
+          <p className="coverages__title">Agrega o quita coberturas</p>
+        </div>
+        <CoverageSelect />
+        <CoverageItems
+          coveragesSelected={coveragesSelected}
+          setCoveragesSelected={setCoveragesSelected}
+          coverages={coverages}
+        />
+      </div>
+    </section>
+  );
+
   const handleUpdateAmount = (q) => {
     const n = Number(amount);
     const quantity = Number(q);
@@ -119,13 +152,17 @@ const MakeYourPlan = (props) => {
     if (!car) {
       fetchCarFn();
     }
-  }, [car]);
+  }, [car, fetchCarFn]);
 
   useEffect(() => {
     if (isOutOfMayorRange) {
       const newCoverage = coveragesSelected.filter((c) => c.code !== "CH_LR");
       setCoveragesSelected(newCoverage);
-    } else {
+    } else if (
+      typeof amountWasMajor === "boolean" &&
+      amountWasMajor &&
+      !isOutOfMayorRange
+    ) {
       const hasAlreadyCoveraged = coveragesSelected.find(
         (c) => c.code === "CH_LR"
       );
@@ -134,10 +171,10 @@ const MakeYourPlan = (props) => {
         setCoveragesSelected((prev) => [...prev, chLr]);
       }
     }
-  }, [amount]);
+  }, [amount, amountWasMajor, coveragesSelected, isOutOfMayorRange]);
 
   useEffect(() => {
-    if (typeof amount === undefined || amount === "") {
+    if (typeof amount === "undefined" || amount === "") {
       setCoveragesSelected([]);
     }
   }, [amount]);
@@ -145,8 +182,27 @@ const MakeYourPlan = (props) => {
   return (
     <div className="plan__main">
       {isFetchingCar && <LoaderSpinner />}
+      <Mobile>
+        <div className="progress__container">
+          <div
+            className="back-button back-button-gray"
+            onClick={() => navigate(-1)}
+          >
+            <div className="back-button-container">
+              <i className="material-icons">keyboard_arrow_left</i>
+            </div>
+          </div>
+          <div>
+            <p>PASO 2 DE 2</p>
+          </div>
+          <div className="progress__bar" />
+        </div>
+      </Mobile>
       <div className="plan__info bg-lightblue">
         <Mobile>{!isFetchingCar && planInfo}</Mobile>
+        <FromMobile>
+          <Stepper />
+        </FromMobile>
       </div>
       <div className="plan__car-content">
         <div className="plan__car-left-content">
@@ -161,7 +217,15 @@ const MakeYourPlan = (props) => {
                 <div className="currency-wrap">
                   <div className="currency-content">
                     <div>$</div>
-                    <input type="number" min={0} {...register("amount")} />
+                    <input
+                      type="number"
+                      min={12500}
+                      max={16500}
+                      {...register("amount", {
+                        min: 12500,
+                        max: 16500,
+                      })}
+                    />
                   </div>
                 </div>{" "}
                 <button onClick={() => handleUpdateAmount("100")}>
@@ -170,31 +234,21 @@ const MakeYourPlan = (props) => {
               </div>
             </div>
           </div>
+          <div className="desktop" style={{ height: "fit-content" }}>
+            {selectCoverageContet}
+          </div>
         </div>
-        <FromMobile>
-          <div className="plan__car-right-content">
-            <CheckoutWrap
-              amountToPay={amountToPay}
-              coverages={coveragesSelected}
-            />
-          </div>
-        </FromMobile>
+        <div
+          className="plan__car-right-content desktop"
+          style={{ height: "fit-content" }}
+        >
+          <CheckoutWrap
+            amountToPay={amountToPay}
+            coverages={coveragesSelected}
+          />
+        </div>
       </div>
-      <Mobile>
-        <section>
-          <div className="coverages">
-            <div className="coverages__title-wrap">
-              <p className="coverages__title">Agrega o quita coberturas</p>
-            </div>
-            <CoverageItems
-              coveragesSelected={coveragesSelected}
-              setCoveragesSelected={setCoveragesSelected}
-              coverages={coverages}
-            />
-          </div>
-        </section>
-      </Mobile>
-
+      <Mobile>{selectCoverageContet}</Mobile>
       <BottomIndicator>{bottomContent}</BottomIndicator>
     </div>
   );

@@ -5,6 +5,7 @@ import coverage2 from "../assets/coverage_2.svg";
 export const coverages = [
   {
     name: "LLanta robada",
+    benefit: "Llanta de respuesto",
     code: "LL_R",
     price: "15",
     icon: coverage0,
@@ -12,6 +13,7 @@ export const coverages = [
   },
   {
     name: "Choque y/o pasarte la luz roja",
+    benefit: "Analisis de motor",
     code: "CH_LR",
     price: "20",
     icon: coverage1,
@@ -19,6 +21,7 @@ export const coverages = [
   },
   {
     name: "Atropello en vía Evitamiento",
+    benefit: "Aros gratis",
     code: "AT_EVT",
     price: "50",
     icon: coverage2,

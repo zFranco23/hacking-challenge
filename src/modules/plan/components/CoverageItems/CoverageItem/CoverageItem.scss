@@ -2,6 +2,7 @@
 @import  '../../../../../style/fonts.scss' ;
 
 
+
 div.coverage__item {
     padding: 2.4rem 0;
     border-bottom: 1px solid #E4E8F7;
@@ -11,6 +12,10 @@ div.coverage__item {
         display: flex;
         justify-content: space-between;
 
+
+        @media (min-width: 768px){
+            cursor: pointer;
+        }
         .item {
             width: fit-content;
         }
@@ -27,6 +32,38 @@ div.coverage__item {
         }
         i {
             color : $red-500;
+        }
+    }
+
+    div.button-handle {
+        width: 8rem;
+        margin-left: 64px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        div.btn-handle {
+            cursor: pointer;
+            border-radius: 100%;
+            height: 2.5rem;
+            width: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #939DFF;
+        }
+        p{
+            color : #6F7DFF;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-left: 1.2rem;
+            font-size: 1.2rem;
+            font-family: $title-font;
+        }
+        i {
+            transform: scale(0.7);
+            color : #6F7DFF;
         }
     }
 

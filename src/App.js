@@ -1,4 +1,4 @@
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import AppRouter from "./router/AppRouter";
 
 import store from "./store";

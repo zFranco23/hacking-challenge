@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import CustomButton from "../../../common/components/CustomButton/CustomButton";
 import CustomCheckbox from "../../../common/components/CustomCheckbox/CustomCheckbox";
 import CustomInput from "../../../common/components/CustomInput/CustomInput";
 
-import carGirlMobile from "../../../assets/img/login/girl-car.png";
+import carGirlMobile from "../../../assets/img/login/girl-car.svg";
 import carGirlDesktop from "../../../assets/img/login/girl-desktop.png";
 import { Mobile, FromMobile } from "../../../utils/responsive";
 
 import "./Login.scss";
 import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
-// import LoaderSpinner from "../../../common/components/LoaderSpinner/LoaderSpinner";
 
 const docOptions = [
   { value: "DNI", name: "DNI" },
@@ -20,7 +20,8 @@ const docOptions = [
 ];
 
 const Login = (props) => {
-  const { isFetchingUser, fetchUserFn, updateUser } = props;
+  const { isFetchingUser, fetchUserFn, updateUser, user } = props;
+  const navigate = useNavigate();
   const [openSelect, setOpenSelect] = useState(false);
   const [docType, setDocType] = useState("DNI");
 
@@ -28,15 +29,24 @@ const Login = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      documento: user ? user.documento : "",
+      celular: user ? user.celular : "",
+      placa: user ? user.placa : "",
+    },
+  });
 
   const submitForm = (values) => {
     updateUser({ info: values });
+    navigate("/arma-tu-plan");
   };
 
   useEffect(() => {
-    fetchUserFn();
-  }, []);
+    if (!user) {
+      fetchUserFn();
+    }
+  }, [user, fetchUserFn]);
 
   const contentTitle = (
     <>
@@ -144,7 +154,8 @@ const Login = (props) => {
               placeholder="Celular"
               {...register("celular", {
                 required: true,
-                pattern: /^[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{6}$/,
+                //eslint disable-next-line
+                pattern: /^[-\s]?[0-9]{3}[-\s]?[0-9]{6}$/,
               })}
             />
             {errors && errors.celular ? (
@@ -175,8 +186,12 @@ const Login = (props) => {
             <CustomCheckbox
               text={
                 <p className="text-politics">
-                  Acepto la <a> Política de Protecciòn de Datos Personales</a> y
-                  los <a>Términos y Condiciones.</a>
+                  Acepto la{" "}
+                  <a href="/login">
+                    {" "}
+                    Política de Protección de Datos Personales
+                  </a>{" "}
+                  y los <a href="/login">Términos y Condiciones.</a>
                 </p>
               }
               {...register("terminos", { required: true })}
@@ -200,6 +215,7 @@ const Login = (props) => {
 };
 
 Login.propTypes = {
+  user: PropTypes.object,
   isFetchingUser: PropTypes.bool,
   fetchUserFn: PropTypes.func.isRequired,
   updateUser: PropTypes.func.isRequired,
