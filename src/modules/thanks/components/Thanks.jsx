@@ -1,13 +1,15 @@
 import React from "react";
-
-import boyMobile from "../../../assets/img/thanks/boy-mobile.png";
+import PropTypes from "prop-types";
+import boyMobile from "../../../assets/img/thanks/boy-mobile.svg";
 import boyDesktop from "../../../assets/img/thanks/boy-desktop.png";
 import CustomButton from "../../../common/components/CustomButton/CustomButton";
 import { FromMobile, Mobile } from "../../../utils/responsive";
 
 import "./Thanks.scss";
 
-const Thanks = () => {
+const Thanks = (props) => {
+  const { user } = props;
+
   return (
     <div className="thanks__main">
       <div className="thanks__container-img">
@@ -47,7 +49,7 @@ const Thanks = () => {
             <FromMobile>
               <br />
             </FromMobile>
-            <span>joel.sanchez@gmail.com</span>
+            <span>{user ? user.email : ""}</span>
           </p>
 
           <CustomButton className="btn__use">Cómo usar mi seguro</CustomButton>
@@ -55,6 +57,10 @@ const Thanks = () => {
       </div>
     </div>
   );
+};
+
+Thanks.propTypes = {
+  user: PropTypes.object,
 };
 
 export default Thanks;

@@ -2,9 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./CustomButton.scss";
 
-const CustomButton = ({ children, className }) => {
+const CustomButton = (props) => {
+  const { children, className, ...otherProps } = props;
+
   return (
-    <button className={`btn btn-contained ${className ? className : ""}`}>
+    <button
+      className={`btn btn-contained ${className ? className : ""}`}
+      {...otherProps}
+    >
       {children}
     </button>
   );

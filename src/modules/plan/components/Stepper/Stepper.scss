@@ -1,0 +1,69 @@
+
+
+
+@import '../../../../style/colors.scss';
+@import '../../../../style/fonts.scss';
+
+div.stepper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4.4rem;
+    width: 15rem;
+    margin: 0 auto;
+
+    div.line_float {
+        position: absolute;
+        left: 1.1rem;
+        top: 2.3rem;
+        z-index: 1;
+        height: 4.3rem;//Resize with other steps *2 *3 *4 , etc
+        border: 1px dashed #A3ABCC;
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
+        width: 2px;
+    }
+
+    div.step {
+        z-index: 4;
+        display: flex;
+
+        div.step__number-wrap {
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #C5CBE0;
+
+            p.step__number {
+                margin:0 ;
+                color :#C5CBE0;
+            }
+        }
+
+        p.step__name {
+            @include paragraph;
+            color : #A3ABCC;
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 24px;
+            letter-spacing: 0.2px;
+            margin-left: 1.6rem;
+        }
+
+        div.step__number-wrap_current {
+            background-color: #6F7DFF;
+            border-color: #6F7DFF;
+            p.step__number {
+                color : #FFFFFF;
+            }
+        }
+
+        div.step__number-wrap_current + p.step__name {
+            color : $gray-title;
+        }
+    }
+}
