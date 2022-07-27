@@ -216,11 +216,22 @@ const Login = (props) => {
               text={
                 <p className="text-politics">
                   Acepto la{" "}
-                  <a href="/login">
+                  <a
+                    href="https://www.rimac.com/politica-privacidad"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {" "}
                     Política de Protección de Datos Personales
                   </a>{" "}
-                  y los <a href="/login">Términos y Condiciones.</a>
+                  y los{" "}
+                  <a
+                    href="https://www.rimac.com/politica-privacidad"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Términos y Condiciones.
+                  </a>
                 </p>
               }
               {...register("terminos", { required: true })}
