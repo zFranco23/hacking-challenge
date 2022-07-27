@@ -148,6 +148,11 @@ const MakeYourPlan = (props) => {
     return !isNaN(a) && a > 16000;
   }, [amount]);
 
+  const disabledMinus = useMemo(() => {
+    const a = Number(amount);
+    return !isNaN(a) && a < 100;
+  }, [amount]);
+
   useEffect(() => {
     if (!car) {
       fetchCarFn();
@@ -172,6 +177,11 @@ const MakeYourPlan = (props) => {
       }
     }
   }, [amount, amountWasMajor, coveragesSelected, isOutOfMayorRange]);
+
+  const isValid = useMemo(() => {
+    const a = Number(amount);
+    return !isNaN(a) && a >= 12500 && a <= 16500;
+  }, [amount]);
 
   useEffect(() => {
     if (typeof amount === "undefined" || amount === "") {
@@ -211,7 +221,10 @@ const MakeYourPlan = (props) => {
             <div className="amount">{infoAmount}</div>
             <div className="input__wrap">
               <div className="input__component">
-                <button onClick={() => handleUpdateAmount("-100")}>
+                <button
+                  onClick={() => handleUpdateAmount("-100")}
+                  disabled={disabledMinus}
+                >
                   <i className="material-icons">remove</i>
                 </button>
                 <div className="currency-wrap">
@@ -219,11 +232,13 @@ const MakeYourPlan = (props) => {
                     <div>$</div>
                     <input
                       type="number"
-                      min={12500}
-                      max={16500}
                       {...register("amount", {
-                        min: 12500,
-                        max: 16500,
+                        validate: {
+                          between: (value) =>
+                            (Number(value) >= 12500 &&
+                              Number(value) <= 16500) ||
+                            "This should almost always trigger",
+                        },
                       })}
                     />
                   </div>
@@ -243,6 +258,7 @@ const MakeYourPlan = (props) => {
           style={{ height: "fit-content" }}
         >
           <CheckoutWrap
+            isValid={isValid}
             amountToPay={amountToPay}
             coverages={coveragesSelected}
           />
