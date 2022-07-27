@@ -35,6 +35,15 @@ nav.navbar {
             width: 300px;
         }
     }
+        
+    div.navbar_phone-wrap {
+        display: inline-flex;
+        align-items: center;
+        i {
+            color : #6F7DFF;
+            margin-right: 2px;
+        }
+    }
 }
 
 nav.navbar-fixed {

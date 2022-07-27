@@ -28,6 +28,8 @@ const Login = (props) => {
   const {
     register,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -36,6 +38,8 @@ const Login = (props) => {
       placa: user ? user.placa : "",
     },
   });
+
+  const { placa } = watch();
 
   const submitForm = (values) => {
     updateUser({ info: values });
@@ -47,6 +51,29 @@ const Login = (props) => {
       fetchUserFn();
     }
   }, [user, fetchUserFn]);
+
+  useEffect(() => {
+    if (placa) {
+      setValue("placa", placa.toUpperCase());
+      const tmpLength = placa.trim().length;
+      if (tmpLength === 3 && !placa.includes("-")) {
+        setValue("placa", placa + "-");
+      }
+    }
+  }, [placa, setValue]);
+
+  const onKeyDown = (e) => {
+    if (
+      placa &&
+      e &&
+      (e.keyCode === 8 || e.key === "Backspace" || e.code === "Backspace")
+    ) {
+      const tmpLength = placa.trim().length;
+      if (tmpLength === 4) {
+        setValue("placa", placa.substring(0, 2));
+      }
+    }
+  };
 
   const contentTitle = (
     <>
@@ -167,6 +194,8 @@ const Login = (props) => {
           <div className="input__wrap">
             <CustomInput
               type="text"
+              maxLength={7}
+              onKeyDown={onKeyDown}
               placeholder="Placa"
               {...register("placa", {
                 required: true,

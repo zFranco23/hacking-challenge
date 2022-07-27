@@ -9,8 +9,8 @@ import "./CheckoutWrap.scss";
 const CheckoutWrap = ({ coverages, amountToPay, isValid }) => {
   const navigate = useNavigate();
 
-  const handleThanks = () => {
-    navigate("/gracias");
+  const handleThanks = (values) => {
+    if (isValid) navigate("/gracias");
   };
 
   return (
