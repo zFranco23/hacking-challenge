@@ -25,7 +25,12 @@ const Navbar = () => {
           <p className="navbar__contact-text">¿Tienes alguna duda?</p>
         </FromMobile>
         <Mobile>
-          <p>Llámanos</p>
+          <a href="tel: (01) 411 6001" className="link">
+            <div className="navbar_phone-wrap">
+              <i className="material-icons">phone</i>
+              <p style={{ marginLeft: "0.5rem" }}>LLámanos</p>
+            </div>
+          </a>
         </Mobile>
         <FromMobile>
           <a href="tel: (01) 411 6001" className="link">
