@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "../common/layout/Navbar/Navbar";
 
@@ -15,7 +15,7 @@ function AppRouter() {
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -49,7 +49,7 @@ function AppRouter() {
           }
         />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
