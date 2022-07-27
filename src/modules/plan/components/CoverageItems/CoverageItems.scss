@@ -1,0 +1,10 @@
+
+
+
+.coverages__container {
+    padding: 32px;
+
+    @media (min-width: 768px){
+        padding: 8px 0 16px 0;
+    }
+}

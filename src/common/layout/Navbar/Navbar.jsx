@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
-import logo from "../../../assets/img/login/rimac-logo.png";
+import { useLocation, useNavigate } from "react-router-dom";
+import logo from "../../../assets/img/login/rimac-logo.svg";
 import { FromMobile, Mobile } from "../../../utils/responsive";
 
 import "./Navbar.scss";
@@ -8,6 +8,7 @@ import "./Navbar.scss";
 const Navbar = () => {
   const location = useLocation();
 
+  const navigate = useNavigate();
   const isUsualNavbar = useMemo(() => {
     return (
       location && location.pathname && !location.pathname.startsWith("/login")
@@ -16,9 +17,9 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar ${isUsualNavbar ? "navbar-fixed" : ""}`}>
-      <a href="/">
+      <div onClick={() => navigate("/")}>
         <img src={logo} alt="logo rimac" />
-      </a>
+      </div>
       <div className="navbar__contact">
         <FromMobile>
           <p className="navbar__contact-text">¿Tienes alguna duda?</p>

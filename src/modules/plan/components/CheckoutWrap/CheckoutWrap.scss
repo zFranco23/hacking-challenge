@@ -1,0 +1,67 @@
+
+@import '../../../../style/colors.scss';
+@import '../../../../style/fonts.scss';
+
+
+section.checkout__wrap {
+    
+    width: 24rem;
+    margin: 0 auto;
+    hr {
+        margin: 2rem 0;
+        border-top: none;
+        border-color: #E4E8F7;
+    }
+
+    p {
+        font-family: $title-font;
+        color : $gray-title;
+    }
+
+    p.checkout__title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+    }
+
+    p.checkout__amount {
+        margin-top: 1rem;
+        margin-bottom: 0.4rem;
+        font-size: 2.8rem;
+        font-weight: 400;
+        letter-spacing: -0.2px;
+    }
+
+    p.checkout__text {
+        @include paragraph;
+        color : $gray-paragraph;
+        font-size: 1.2rem;
+        line-height: 20px;
+    }
+
+    p.checkout__secondary-text {
+        font-size: 1.6rem;
+        font-weight: 400;
+        letter-spacing: 0.2px;
+    }
+
+    ul {
+        list-style-image: url('../../../../assets/ic_check.svg');
+        padding-inline-start: 20px;
+    }
+
+    ul li {
+        @include paragraph;
+        font-family: $body-font;
+        color : $gray-paragraph;
+        font-size: 1.4rem;
+        line-height: 24px;
+        padding: 0 10px;
+    }
+
+    button.button__confirm {
+        height: 48px;
+        width: 22.4rem;
+    }
+}

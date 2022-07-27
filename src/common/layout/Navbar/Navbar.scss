@@ -30,6 +30,10 @@ nav.navbar {
         p.navbar__contact-text {
             color : $gray-paragraph
         }
+
+        @media (min-width: 768px){
+            width: 300px;
+        }
     }
 }
 
